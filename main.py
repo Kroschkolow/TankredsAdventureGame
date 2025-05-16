@@ -141,7 +141,7 @@ class Main:
             print(f"\tIn addition to {color.BLUE}food{color.END} you have a chance to collect {color.BLUE}hide{color.END} while hunting.")
             print(f"\tYou have a chance to find 0 to 5 {color.BLUE}food{color.END} and 0 to 2 {color.BLUE}hide{color.END} per hour.")
             print(f"\tEvery time you set out to hunt your success will be determined.")
-            print(f"\tHigher success yields potentially more {color.BLUE}resources{color.END} and even guaranties drops on higher levels.")
+            print(f"\tHigher success yields potentially more {color.BLUE}resources{color.END} and even guarantees drops on higher levels.")
             print()
         elif next_action == 4:
             Main.main_menu()

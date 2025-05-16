@@ -292,8 +292,10 @@ class Player(Character):
             self.action(STAMINA_COST)
             wood_collected.quantity += random.randint(0,1)
             input(f"\tYou collected {wood_collected.quantity} {wood_collected.name} so far.")
-        self.add_item(wood_collected)
+        if (wood_collected.quantity > 0):
+            self.add_item(wood_collected)
         input(f"\tYou collected {wood_collected.quantity} {wood_collected.name} in {time_spend} hours and return home.\n\t")
+
 
     def forage(self):
         STAMINA_COST = 1
@@ -306,7 +308,8 @@ class Player(Character):
             self.action(STAMINA_COST)
             food_collected.quantity += random.randint(0,1)
             input(f"\tYou collected {food_collected.quantity} {food_collected.name} so far.")
-        self.add_item(food_collected)
+        if (food_collected.quantity > 0):
+            self.add_item(food_collected)
         input(f"\tYou collected {food_collected.quantity} {food_collected.name} in {time_spend} hours and return home.\n\t")
 
     # The hunt method implements hunting success as this was part of the original assignment by my python teacher.
@@ -333,8 +336,10 @@ class Player(Character):
                 food_collected.quantity += random.randint(1, 3)
                 hide_collected.quantity += random.randint(1, 2)
             input(f"\tYou collected {food_collected.quantity} {food_collected.name} and {hide_collected.quantity} {hide_collected.name} so far.")
-        self.add_item(food_collected)
-        self.add_item(hide_collected)
+        if (food_collected.quantity > 0):
+            self.add_item(food_collected)
+        if (hide_collected):
+            self.add_item(hide_collected)
         input(f"\tYou collected {food_collected.quantity} {food_collected.name} and {hide_collected.quantity} {hide_collected.name} in {time_spend} hours and return home.\n\t")
 
     #-------------------------------------------------------------------------------------------------------------------
@@ -468,7 +473,7 @@ class NPC (Character):
         if random.randint(0,1):
             self.add_item(Item('flint', 1))
 
-# This method will be rewritten once the value system will be implemented.
+# This method will be rewritten once the value system has been implemented.
 '''
     def confirm_trade(self):
         agreement = int(input(f"\tDo you agree to the trade, {self.name}?\n\t 0: No / 1: Yes"))
