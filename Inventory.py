@@ -24,7 +24,7 @@ class Inventory:
     def print_inventory(self):
         self.clear_inventory()
         if len(self.items) == 0:
-            print(f"\tNo {color.BLUE}items{color.END} in inventory.")
+            print(f"\tNo {color.blue("items")} in inventory.")
         else:
             for i in range(0, len(self.items)):
                 print(f" {i}: " + self.items[i].description())

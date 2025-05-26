@@ -6,7 +6,7 @@ import color
 
 class Item:
     def __init__(self, name, quantity):
-        self.name = color.BLUE + name + color.END
+        self.name = color.blue(name)
         self.quantity = quantity
         # The value is currently being set to zero. A value system will be implemented through a dictionary.
         self.value = 0

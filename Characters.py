@@ -1,11 +1,11 @@
-from status import Status
-from inventory import Inventory
-from map import Map
+from Status import Status
+from Inventory import Inventory
+from Map import Map
 import color
 import sys
 import random
-from world import World
-from item import Item, Recipe
+from World import World
+from Item import Item
 
 #-------------------------------------------------------------------------------------------------------------------
 # This class contains the character parent class and all different child classes like the player, enemies and NPC.
@@ -78,7 +78,7 @@ class Player(Character):
     # make informed decisions about how to continue.
 
     def display_status(self):
-        return(f"\n{self.name}\t\t{self.status.display()}\n{World.display_time()}")
+        return f"\n{self.name}\t\t{self.status.display()}\n{World.display_time()}"
 
     # This method gets called during every action.
     # - it passes world time
@@ -112,7 +112,6 @@ class Player(Character):
 
     def go_on(self, danger_level):
         print(f"\t{self.display_status()}\n")
-        decision = 0
         try:
             decision = bool(int(input("*** Do you want to continue?\n\t 0: No / 1: Yes\n\t ")))
         except ValueError:
@@ -163,7 +162,7 @@ class Player(Character):
 
     def action(self, amount):
         if self.status.stamina - amount < 0:
-            print(f"\tYou don't have enough {color.GREEN}stamina{color.END}. You take {color.RED}1 damage{color.END}!\n")
+            print(f"\tYou don't have enough {color.green("stamina")}. You take {color.red("1 damage")}!\n")
             self.status.stamina = 0
             self.take_damage(1)
             return False
@@ -208,7 +207,7 @@ class Player(Character):
                     self.heal(1)
                     print(f"\tYour wounds healed completely!\t{color.RED}Health: {self.status.health}{color.END}")
                 self.status.recover_stamina(2)
-                World.pass_time()
+                self.update(DANGER_LEVEL)
                 input("\t")
 
             adjectives = ['singing', 'howling', 'chewing', 'dancing', 'fornicating', 'snoring', 'crying', 'defecating', 'puking', 'falling', 'arguing']
@@ -255,8 +254,8 @@ class Player(Character):
     # different tools will be needed to unlock different actions in the future (e.g. needing a bow to hunt).
 
     def craft_item(self):
-        DURATION = None
-        DANGER_LEVEL = 1
+        # DURATION = 0
+        # DANGER_LEVEL = 1
         print("\n*** You are preparing to craft something...\n")
         self.recipes.print_inventory()
         decision = int(input("\n\tWhat do you want to craft?\n\t"))
@@ -292,7 +291,7 @@ class Player(Character):
             self.action(STAMINA_COST)
             wood_collected.quantity += random.randint(0,1)
             input(f"\tYou collected {wood_collected.quantity} {wood_collected.name} so far.")
-        if (wood_collected.quantity > 0):
+        if wood_collected.quantity > 0:
             self.add_item(wood_collected)
         input(f"\tYou collected {wood_collected.quantity} {wood_collected.name} in {time_spend} hours and return home.\n\t")
 
@@ -308,7 +307,7 @@ class Player(Character):
             self.action(STAMINA_COST)
             food_collected.quantity += random.randint(0,1)
             input(f"\tYou collected {food_collected.quantity} {food_collected.name} so far.")
-        if (food_collected.quantity > 0):
+        if food_collected.quantity > 0:
             self.add_item(food_collected)
         input(f"\tYou collected {food_collected.quantity} {food_collected.name} in {time_spend} hours and return home.\n\t")
 
@@ -336,9 +335,9 @@ class Player(Character):
                 food_collected.quantity += random.randint(1, 3)
                 hide_collected.quantity += random.randint(1, 2)
             input(f"\tYou collected {food_collected.quantity} {food_collected.name} and {hide_collected.quantity} {hide_collected.name} so far.")
-        if (food_collected.quantity > 0):
+        if food_collected.quantity > 0:
             self.add_item(food_collected)
-        if (hide_collected):
+        if hide_collected.quantity > 0:
             self.add_item(hide_collected)
         input(f"\tYou collected {food_collected.quantity} {food_collected.name} and {hide_collected.quantity} {hide_collected.name} in {time_spend} hours and return home.\n\t")
 
@@ -353,7 +352,6 @@ class Player(Character):
         DURATION = 3
         if World.check_time(DURATION):
             print("*** You are preparing to pack up and venture forth...\n")
-            decision = 0
             # Unlike other methods, ValueErrors don't abort the action but chooses the direction for you. So do wrong numbers.
             try:
                 decision = int(input("\tWhere do you want to go?\n\t 0: North\n\t 1: East\n\t 2: South\n\t 3: West\n\t "))
