@@ -7,8 +7,5 @@ This is a work in progress!
 
 It works as it is right now, but I want to add a lot more when I find the time.
 
-Next step:
-Access modifiers and (more/proper) getter/setter methods
-
 Have a nice day!
 Christian
