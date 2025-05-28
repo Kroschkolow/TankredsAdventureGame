@@ -434,7 +434,7 @@ class Enemy (Character):
     def __init__(self, hp, stamina, danger_level):
 
         # Dear visitors, please excuse my humor while exploring these lists.
-        adjectives = ['a deadly', 'a morbidly-obese', 'an old', 'a friendly', 'a bald', 'a furry', 'a blood-thirsty', 'nazi-zombie', 'an ugly', 'a baby', 'a smelly', 'zombie', 'a wild', 'a vicious', 'a cute', 'a shy', 'a vegan', 'a radioactive', 'an HIV-positive', 'a diabetic']
+        adjectives = ['a deadly', 'a morbidly-obese', 'an old', 'a friendly', 'a bald', 'a furry', 'a blood-thirsty', 'a nazi-zombie', 'an ugly', 'a baby', 'a smelly', 'a zombie', 'a wild', 'a vicious', 'a cute', 'a shy', 'a vegan', 'a radioactive', 'an HIV-positive', 'a diabetic']
         names = ['wolf', 'bear', 'fox', 'gnu', 'rat', 'guineapig', 'parrot', 'cat', 'zombie', 'hedgehog', 'spider', 'flamingo', 'ostrich', 'eagle', 'sloth', 'dodo', 'cannibal', 'clown', 'politician', 'nazi-zombie', 'ferret', 'teenager', 'arrow to the knee', 'toddler']
 
         name = color.RED + random.choice(names) + color.END

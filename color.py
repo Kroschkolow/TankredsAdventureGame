@@ -3,6 +3,7 @@
 # This class serves only to make coloring text for console output easier
 #-----------------------------------------------------------------------------------------------------------------------
 
+# Variables
 RED = '\033[91m'
 GREEN = '\033[92m'
 YELLOW = '\033[93m'
@@ -12,7 +13,7 @@ CYAN = '\033[96m'
 END = '\033[0m'
 
 
-
+# Methods
 def red(text):
     return f"{RED}{text}{END}"
 
